@@ -22,6 +22,9 @@ export default function TodoApp() {
   const [task, setTask] = useState("");
   const [todos, setTodos] = useState([]);
   const [selectedLang, setSelectedLang] = useState("es");
+  const [editingId, setEditingId] = useState(null);
+  const [editText, setEditText] = useState('');
+
 
   const addTodo = async () => {
     if (!task.trim()) return;
@@ -36,6 +39,39 @@ export default function TodoApp() {
   const toggleComplete = (id) => {
     setTodos(todos.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
   };
+
+  const startEdit = (todo) => {
+    setEditingId(todo.id);
+    setEditText(todo.text);
+  };
+  
+  const saveEdit = async (id) => {
+    try {
+      const translated = await translateText(editText, selectedLang);
+      setTodos(todos.map(todo =>
+        todo.id === id
+          ? {
+              ...todo,
+              text: editText,
+              translated,
+              completed: todo.completed
+            }
+          : todo
+      ));
+    } catch (error) {
+      console.error("Translation failed during edit:", error);
+    } finally {
+      setEditingId(null);
+      setEditText('');
+    }
+  };
+  
+  
+  const cancelEdit = () => {
+    setEditingId(null);
+    setEditText('');
+  };
+  
 
   const deleteTodo = (id) => {
     setTodos(todos.filter(t => t.id !== id));
@@ -141,26 +177,58 @@ export default function TodoApp() {
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                   <div>
-                    <p style={{
-                      fontSize: "1.125rem",
-                      fontWeight: "500",
-                      textDecoration: todo.completed ? "line-through" : "none",
-                      color: todo.completed ? "#6b7280" : "#111827",
-                      marginBottom: "0.25rem"
-                    }}>
-                      {todo.text}
-                    </p>
+                  {editingId === todo.id ? (
+                        <input
+                          value={editText}
+                          onChange={(e) => setEditText(e.target.value)}
+                          style={{
+                            width: '100%',
+                            fontSize: '1.125rem',
+                            fontWeight: '500',
+                            padding: '0.25rem 0.5rem',
+                            border: '1px solid #d1d5db',
+                            borderRadius: '0.5rem',
+                            marginBottom: '0.5rem'
+                          }}
+                        />
+                      ) : (
+                        <p style={{
+                          fontSize: "1.125rem",
+                          fontWeight: "500",
+                          textDecoration: todo.completed ? "line-through" : "none",
+                          color: todo.completed ? "#6b7280" : "#111827",
+                          marginBottom: "0.25rem"
+                        }}>
+                          {todo.text}
+                        </p>
+                      )}
                     <p style={{ fontSize: "0.875rem", color: "#6b7280", fontStyle: "italic", display: "flex", alignItems: "center", gap: "0.25rem" }}>
                       <Languages size={14} /> {todo.translated}
                     </p>
                   </div>
                   <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.25rem" }}>
-                    <button onClick={() => toggleComplete(todo.id)} style={{ color: "#16a34a", cursor: "pointer" }}>
-                      <Check />
-                    </button>
-                    <button onClick={() => deleteTodo(todo.id)} style={{ color: "#dc2626", cursor: "pointer" }}>
-                      <Trash2 />
-                    </button>
+                    {editingId === todo.id ? (
+                      <>
+                        <button onClick={() => saveEdit(todo.id)} style={{ color: "#10b981", cursor: "pointer" }}>
+                          💾
+                        </button>
+                        <button onClick={cancelEdit} style={{ color: "#6b7280", cursor: "pointer" }}>
+                          ❌
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button onClick={() => toggleComplete(todo.id)} style={{ color: "#16a34a", cursor: "pointer" }}>
+                          <Check />
+                        </button>
+                        <button onClick={() => startEdit(todo)} style={{ color: "#3b82f6", cursor: "pointer" }}>
+                          ✏️
+                        </button>
+                        <button onClick={() => deleteTodo(todo.id)} style={{ color: "#dc2626", cursor: "pointer" }}>
+                          <Trash2 />
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
