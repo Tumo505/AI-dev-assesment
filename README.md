@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# 📝 Multi-Language To-Do App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A minimal, task management app built with **React**, allowing users to create to-do items and instantly translate them into various languages using the MyMemory Translation API.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔧 Product Requirements Document (PRD)
 
-### `npm start`
+### Product Overview
+The Multi-Language To-Do App enables users to create, manage, and translate personal task lists across different languages. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Core Features
+- ✅ Add new tasks
+- ✅ Mark tasks as completed
+- ✅ Translate tasks from English to a selected language
+- ✅ Edit tasks and auto-translate updated text
+- ✅ Delete tasks
+- ✅ Responsive UI and simple animations
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Target Users
+- International users needing multilingual task support
+- Students or professionals learning new languages
+- Productivity-focused users who want a lightweight task tool
 
-### `npm test`
+### Technical Requirements
+- ✅ Frontend: React + Inline CSS
+- ✅ Animation: Framer Motion
+- ✅ Icons: Lucide React Icons
+- ✅ AI Integration: [MyMemory Translation API](https://mymemory.translated.net/)
+- ✅ Deployment: Vercel
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🚀 Live Demo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🔗 [View the Live App on Vercel](https://dev-assesment.vercel.app/)  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📖 User Guide
 
-### `npm run eject`
+### ✨ Getting Started
+1. Type a task into the input field.
+2. Select a target translation language from the dropdown.
+3. Click **+ Add** to add the task and auto-translate it.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### ✏️ Edit a Task
+- Click the ✏️ icon next to a task.
+- Modify the text.
+- Click 💾 to save — the task will be re-translated.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ✅ Mark as Complete
+- Click the ✅ icon to mark a task as complete or revert it.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🗑️ Delete a Task
+- Click the 🗑️ icon to permanently delete a task.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🛠 Developer Documentation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🧱 Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+multi-language-todo-app/
+├── public/
+│   ├── index.html             # HTML template
+│   └── favicon.ico            # App icon
+│
+├── src/
+│   ├── components/
+│   │   └── TodoApp.js         # Main To-Do app with inline styling and translation logic
+│   │
+│   ├── index.js               # React entry point
+│   └── App.js                 # App wrapper 
+│
+├── package.json               # Project metadata and dependencies
+├── README.md                  # Project documentation
+└── .gitignore                 # Files to ignore in version control
+```
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 📦 Tech Stack
+| Tool                 | Purpose                              |
+|----------------------|--------------------------------------|
+| React                | Frontend Framework                   |
+| MyMemory API         | AI-Powered Translation               |
+| Framer Motion        | Smooth animation                     |
+| Lucide React         | Icons (Check, Edit, Trash, etc.)     |
+| Vercel               | Deployment                           |
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 🔧 Installation
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+git clone https://github.com/Tumo505/AI-dev-assesment.git
+cd AI-dev-assessment
+npm install
+npm start
